@@ -1,108 +1,119 @@
 <!doctype html>
 <html lang="ja">
 <head>
-	<meta name="robots" content="noindex">
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ブラウザタブに表示されるタイトル -->
-    <title>囚と友音</title>
-    <!-- SNS/メッセンジャー共有時に表示される説明 -->
-    <meta name="description" content="囚と友音">
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ブラウザタブに表示されるタイトル -->
+  <title>囚と友音</title>
+<!-- SNS/メッセンジャー共有時に表示される説明 -->
+  <meta name="description" content="囚と友音">
 
-    <!-- フォントを読み込む -->
-	   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+Antique&display=swap" rel="stylesheet">
+<!-- フォントを読み込む -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+Antique&display=swap" rel="stylesheet">
 	
-    <!-- スタイルシートのリンク（同じフォルダのstyle.css） -->
-<link rel="stylesheet" href="style.css">
+<!-- スタイルシートのリンク（同じフォルダのstyle.css） -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- モバイルのみ：サイドバートグルボタン＆オーバーレイ -->
 <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="サイドバーを開く">☰</button>
-<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+<div class="sidebar-overlay" onclick="toggleSidebar()">
+</div>
 
 <div class="container">
 
-    <!-- ============================================================
+<!-- ============================================================
          ヘッダーバナー画像
          images/ フォルダ内のファイル名を変更すれば画像交換可能
-         ============================================================ -->
-	<div class="header-banner">
-        <img src="header-banner.webp" alt="Header Banner">
-    </div>
+     ============================================================ -->
+  <div class="header-banner">
+    <img src="header-banner.webp" alt="Header Banner">
+  </div>
 
-    <div class="content-row">
+  <div class="content-row">
 
-        <!-- ============================================================
+<!-- ============================================================
              左サイドバー
-             ============================================================ -->
-        <div class="sidebar-column">
-            <aside class="sidebar">
+     ============================================================ -->
+    <div class="sidebar-column">
+      <aside class="sidebar">
 
-                <!-- プロフィール画像 -->
-                <img src="profile_icon.webp" alt="Character Image" class="profile-img">
+        <!-- プロフィール画像 -->
+        <img src="profile_icon.webp" alt="Character Image" class="profile-img">
 
-                <!-- キャラクター名 -->
-                <h1 class="char-name">囚と友音</h1>
+        <!-- キャラクター名 -->
+        <h1 class="char-name">囚と友音</h1>
 				
-                <!-- サイドバー紹介テキスト - 内容を変更するだけです -->
-                <p class="sidebar-sub">紹介 1</p>
-                <p class="sidebar-sub">紹介 2</p>
-                <p class="sidebar-sub sidebar-sub--spaced">since 2026.04.01</p>
+        <!-- サイドバー紹介テキスト - 内容を変更するだけです -->
+        <p class="sidebar-sub">紹介 1</p>
+        <p class="sidebar-sub">紹介 2</p>
+        <p class="sidebar-sub sidebar-sub--spaced">since 2026.04.01</p>
 
-                <!-- リンクボタン
-                     href =移動するURL、ボタンテキストも置き換えることができます-->
-                <a href="https://ccfolia.com/rooms/ETA-3vfI8" class="link-btn" target="_blank">CCFOLIA</a>
+        <!-- リンクボタン
+             href =移動するURL、ボタンテキストも置き換えることができます-->
+        <a href="https://ccfolia.com/rooms/ETA-3vfI8" class="link-btn" target="_blank">CCFOLIA
+        </a>
 
-                <!-- YouTubeミュージックプレーヤー
-                     URLの映像ID（AN1RJF55NXI部分）のみを変えれば曲交換可能
-                     例: https://youtu.be/XXXXXXXXXX → XXXXXXXXXX 部分をコピー -->
-                <div class="music-player">
-					                <div class="music-player">
-                    <iframe
-                        class="youtube-frame"
-                        src="https://www.youtube.com/embed/PFQQhZQp5vo?si=1C_PTTENCd1SV2NK"
-                        title="YouTube video player"
-                        allowfullscreen>
-                    </iframe>
-                    <div class="music-info">
-                        <!-- 曲のタイトルとアーティスト名 -->
-                        <div class="music-title">
-ショウタイム・ルーラー</div>
-                        <div class="music-artist">カラスヤサボウ</div>
-                    </div>
-                </div>
+        <!-- YouTubeミュージックプレーヤー
+             URLの映像ID（AN1RJF55NXI部分）のみを変えれば曲交換可能
+             例: https://youtu.be/XXXXXXXXXX → XXXXXXXXXX 部分をコピー -->
+      <div class="music-player">
 
-            </aside>
-            <!-- ============================================================
-キャラクターイメージ一覧
+        <a
+          href="https://www.youtube.com/watch?v=PFQQhZQp5vo"
+          target="_blank"
+          class="music-link">
+
+        <img
+          class="youtube-frame"
+          src="https://img.youtube.com/vi/PFQQhZQp5vo/hqdefault.jpg"
+          alt="ショウタイム・ルーラー">
+
+	    <div class="music-info">
+          <div class="music-title">
+			  ショウタイム・ルーラー
+		  </div>
+
+          <div class="music-artist">
+			  烏屋茶房
+          </div>
+       </div>
+
+        </a>
+
+      </div>
+  </aside>
+<!-- ============================================================
+     キャラクターイメージ一覧
                  クリックすると該当キャラクター詳細セクションに移動します。
                  - src: イメージパス
                  - title : マウスオーバー時に表示される名前
                  - onclick：開かれるセクションのid（以下のsection idと一致する必要があります）
                  追加するには、<img> 1行をコピーして編集します。
-                 ============================================================ -->
+     ============================================================ -->
 				            <div class="character-section">
                 <img src="character_icon1.webp" class="character-img" alt="淋憧 友音" title="淋憧 友音" onclick="openTab('淋憧 友音')">
                 <img src="character_icon2.webp" class="character-img" alt="柚ヶ与 囚" title="柚ヶ与 囚" onclick="openTab('柚ヶ与 囚')">
                 
 								           </div>
 
-            <!-- ============================================================
-                 カレンダー
-                 スケジュールの追加：以下のJSのeventsオブジェクトに入力します。
-                 フォーマット: "YYYY-MM-DD": ["スケジュール名", "時間"]
-                 ============================================================ -->
+<!-- ============================================================
+     カレンダー
+              スケジュールの追加：以下のJSのeventsオブジェクトに入力します。
+              フォーマット: "YYYY-MM-DD": ["スケジュール名", "時間"]
+     ============================================================ -->
             <div class="calendar" id="calendar"></div>
 
         </div>
         <!-- /sidebar-column -->
 			
-        <!-- ============================================================
+<!-- ============================================================
              右メインコンテンツエリア
-             ============================================================ -->
+     ============================================================ -->
         <main class="main-content">
 
             <!-- タブナビゲーション
@@ -112,13 +123,13 @@
                 <button class="nav-btn active" onclick="openTab('home',   this)">Home</button>
                 <button class="nav-btn"        onclick="openTab('Backup', this)">Backup</button>
                 <button class="nav-btn"        onclick="openTab('NPC',    this)">NPC</button>
-				 <button class="nav-btn"        onclick="openTab('gallery',    this)">Gallery</button>
+				<button class="nav-btn"        onclick="openTab('gallery',    this)">Gallery</button>
 				            </nav>
 
 
-            <!-- ====================================================
-                 [タブ] Home — メインイラスト
-                 ==================================================== -->
+<!-- ====================================================
+            [タブ] Home — メインイラスト
+     ==================================================== -->
             <section id="home" class="content-card active">
                 <h2>囚と友音</h2>
                 <!-- 画像の置き換え：images/main.pngファイルを置き換えるか、パスを変更してください -->
@@ -126,13 +137,13 @@
             </section>
 
 
-            <!-- ====================================================
-                 【キャラクター画像クリックのみ】キャラクター詳細ページ
+<!-- ====================================================
+    【キャラクター画像クリックのみ】キャラクター詳細ページ
                  左のキャラクター画像をクリックすると開きます。
                  追加するには、このセクション全体をコピーして
-                   id="char-ho1" → id="char-ho5"などに変更後
-                   キャラクターイメージのonclickも同じidに合わせてください。
-                 ==================================================== -->
+                 id="char-ho1" → id="char-ho5"などに変更後
+                 キャラクターイメージのonclickも同じidに合わせてください。
+     ==================================================== -->
 			            <section id="淋憧 友音" class="content-card">
                 <h2>Rindou Tomone</h2>
 
@@ -146,7 +157,7 @@
                         <div class="char-quote">
                             <span class="quote-mark" style="color: rgba(80,149,163,1.00);">"</span>
                             <p class="quote-text">「あなたのやりたいことを教えてください」</p>
-							                        </div>
+						</div>
 
                         <div class="divider-dots">• • •</div>
 
@@ -365,7 +376,10 @@
                     <div class="details-content">内容</div>
                 </details>
 
-            </section>            <!-- /char-ho2 -->
+            </section>            
+			<!-- /char-ho2 -->
+			
+			
             <!-- ====================================================
                  [タブ] Backup — ログのバックアップ
 
@@ -451,7 +465,7 @@
 	<!-- /content-row -->
 		
     <!-- フッター — フレーズを変えるだけです -->
-    <footer class="site-footer">© 2026 Wizarding Vixen. All rights reserved.</footer>
+    <footer class="site-footer">© 2026  All rights reserved.</footer>
 
 </div>
 <!-- /container -->
