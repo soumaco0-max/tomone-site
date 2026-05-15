@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta name="robots" content="noindex">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ブラウザタブに表示されるタイトル -->
+    <title>囚と友音</title>
+    <!-- SNS/メッセンジャー共有時に表示される説明 -->
+    <meta name="description" content="囚と友音">
+
+    <!-- フォントを読み込む -->
+	   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+Antique&display=swap" rel="stylesheet">
+	
+    <!-- スタイルシートのリンク（同じフォルダのstyle.css） -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- モバイルのみ：サイドバートグルボタン＆オーバーレイ -->
+<button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="サイドバーを開く">☰</button>
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<div class="container">
+
+    <!-- ============================================================
+         ヘッダーバナー画像
+         images/ フォルダ内のファイル名を変更すれば画像交換可能
+         ============================================================ -->
+	<div class="header-banner">
+        <img src="header-banner.webp" alt="Header Banner">
+    </div>
+
+    <div class="content-row">
+
+        <!-- ============================================================
+             左サイドバー
+             ============================================================ -->
+        <div class="sidebar-column">
+            <aside class="sidebar">
+
+                <!-- プロフィール画像 -->
+                <img src="profile_icon.webp" alt="Character Image" class="profile-img">
+
+                <!-- キャラクター名 -->
+                <h1 class="char-name">囚と友音</h1>
+				
+                <!-- サイドバー紹介テキスト - 内容を変更するだけです -->
+                <p class="sidebar-sub">紹介 1</p>
+                <p class="sidebar-sub">紹介 2</p>
+                <p class="sidebar-sub sidebar-sub--spaced">since 2026.04.01</p>
+
+                <!-- リンクボタン
+                     href =移動するURL、ボタンテキストも置き換えることができます-->
+                <a href="https://ccfolia.com/rooms/ETA-3vfI8" class="link-btn" target="_blank">CCFOLIA</a>
+
+                <!-- YouTubeミュージックプレーヤー
+                     URLの映像ID（AN1RJF55NXI部分）のみを変えれば曲交換可能
+                     例: https://youtu.be/XXXXXXXXXX → XXXXXXXXXX 部分をコピー -->
+                <div class="music-player">
+					                <div class="music-player">
+                    <iframe
+                        class="youtube-frame"
+                        src="https://www.youtube.com/embed/PFQQhZQp5vo?si=1C_PTTENCd1SV2NK"
+                        title="YouTube video player"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="music-info">
+                        <!-- 曲のタイトルとアーティスト名 -->
+                        <div class="music-title">
+ショウタイム・ルーラー</div>
+                        <div class="music-artist">カラスヤサボウ</div>
+                    </div>
+                </div>
+
+            </aside>
+            <!-- ============================================================
+キャラクターイメージ一覧
+                 クリックすると該当キャラクター詳細セクションに移動します。
+                 - src: イメージパス
+                 - title : マウスオーバー時に表示される名前
+                 - onclick：開かれるセクションのid（以下のsection idと一致する必要があります）
+                 追加するには、<img> 1行をコピーして編集します。
+                 ============================================================ -->
+				            <div class="character-section">
+                <img src="character_icon1.webp" class="character-img" alt="淋憧 友音" title="淋憧 友音" onclick="openTab('淋憧 友音')">
+                <img src="character_icon2.webp" class="character-img" alt="柚ヶ与 囚" title="柚ヶ与 囚" onclick="openTab('柚ヶ与 囚')">
+                
+								           </div>
+
+            <!-- ============================================================
+                 カレンダー
+                 スケジュールの追加：以下のJSのeventsオブジェクトに入力します。
+                 フォーマット: "YYYY-MM-DD": ["スケジュール名", "時間"]
+                 ============================================================ -->
+            <div class="calendar" id="calendar"></div>
+
+        </div>
+        <!-- /sidebar-column -->
+			
+        <!-- ============================================================
+             右メインコンテンツエリア
+             ============================================================ -->
+        <main class="main-content">
+
+            <!-- タブナビゲーション
+                 追加: <button class="nav-btn" onclick="openTab('セクションID', this)">名前</button>
+                 ただし、同じidを持つ<section>が以下になければなりません -->
+            <nav class="nav-tabs">
+                <button class="nav-btn active" onclick="openTab('home',   this)">Home</button>
+                <button class="nav-btn"        onclick="openTab('Backup', this)">Backup</button>
+                <button class="nav-btn"        onclick="openTab('NPC',    this)">NPC</button>
+				 <button class="nav-btn"        onclick="openTab('gallery',    this)">Gallery</button>
+				            </nav>
+
+
+            <!-- ====================================================
+                 [タブ] Home — メインイラスト
+                 ==================================================== -->
+            <section id="home" class="content-card active">
+                <h2>囚と友音</h2>
+                <!-- 画像の置き換え：images/main.pngファイルを置き換えるか、パスを変更してください -->
+                <img src="main.webp" style="width:100%; height:auto;" alt="メインイラスト">
+            </section>
+
+
+            <!-- ====================================================
+                 【キャラクター画像クリックのみ】キャラクター詳細ページ
+                 左のキャラクター画像をクリックすると開きます。
+                 追加するには、このセクション全体をコピーして
+                   id="char-ho1" → id="char-ho5"などに変更後
+                   キャラクターイメージのonclickも同じidに合わせてください。
+                 ==================================================== -->
+			            <section id="淋憧 友音" class="content-card">
+                <h2>Rindou Tomone</h2>
+
+                <div class="profile-overview">
+                    <!-- キャラクタースタンディングイメージ -->
+                    <img src="tomoneStanding.webp" alt="カラス" class="main-profile-img">
+
+                    <div class="profile-info-wrapper">
+                        <!-- 引用
+                             quote-mark 色: style="color: ..." 値を変更するだけです -->
+                        <div class="char-quote">
+                            <span class="quote-mark" style="color: rgba(80,149,163,1.00);">"</span>
+                            <p class="quote-text">「あなたのやりたいことを教えてください」</p>
+							                        </div>
+
+                        <div class="divider-dots">• • •</div>
+
+                        <!-- 基本情報テーブル
+                             行を追加: <div class="info-row">...</div> コピー -->
+                        <div class="info-table">
+                            <div class="info-row">
+                                <span class="info-label">名前</span>
+                                <span class="info-value">淋憧 友音</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">職業</span>
+                                <span class="info-value">ハッカー</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">年齢</span>
+                                <span class="info-value">26</span>
+								                            </div>
+                            <div class="info-row">
+                                <span class="info-label">身長</span>
+                                <span class="info-value">177</span>
+                            </div>
+                        </div>
+
+                        <!-- 探索者シートリンク -->
+                        <a href="https://iachara.com/view/14095473" class="link-btn" target="_blank">淋憧 友音CS</a>
+                    </div>
+                </div>
+
+                <div class="divider-dots">• • •</div>
+
+	                <!-- ================================================
+                     レーダーチャート+キャラクターバーグラフ
+
+                     data-stats: STR、CON、POW、DEX、APP、SIZ、INT、EDU
+                                  0〜100の間の8つの数字をカンマで区切って入力
+                                  頂点にマウスを置くと数値が表示されます。
+                     data-color:チャートカラー(R、G、B)
+                     ================================================ -->
+                <div class="stats-wrapper"
+                     data-stats="7, 8, 9, 10, 16, 13, 15, 17"
+                     data-color="80,149,163">
+
+                    <!-- レーダーチャートSVG - 触れる必要はありません -->
+                    <div class="radar-chart-container">
+                        <svg viewBox="0 0 200 200" class="radar-chart">
+                            <g class="chart-background"></g>
+                            <polygon points="" class="chart-polygon data-area"></polygon>
+                            <g class="chart-dots"></g>
+                            <g class="chart-labels"></g>
+                            <g class="chart-tooltip" style="display:none;">
+                                <rect class="tooltip-bg" rx="3" ry="3"></rect>
+                                <text class="tooltip-text"></text>
+                            </g>
+                        </svg>
+                    </div>
+
+					                    <!-- 性格バーグラフ
+                         --bar-color : バー全体の色(この値のみを変更するとすべてのバーに適用)
+                         width : 0% = 左極端 / 100% = 右極端 -->
+                    <div class="stat-group" style="--bar-color: rgba(118,176,188,0.60);">
+                        <h3>Personality</h3>
+
+                        <div class="stat-item">
+                            <div class="stat-header"><span>内向的</span><span>外向的</span></div>
+                            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:30%;"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-header"><span>感覚</span><span>直感</span></div>
+							<div class="stat-bar-bg"><div class="stat-bar-fill" style="width:50%;"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-header"><span>思考</span><span>感情</span></div>
+                            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:10%;"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-header"><span>判断</span><span>知覚</span></div>
+                            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:50%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /stats-wrapper -->
+
+                <div class="divider-dots">• • •</div>
+               
+				<!-- バックストーリー
+                     分岐点を追加: <details>...</details> ブロックをコピー -->
+                <h2>バックストーリー</h2>
+                <p class="section-intro">入る前の概要テキスト</p>
+
+                <details>
+                    <summary>分岐点 1</summary>
+                    <div class="details-content">内容</div>
+                </details>
+                <details>
+                    <summary>分岐点 2</summary>
+                    <div class="details-content">内容</div>
+                </details>
+
+            </section>            <!-- /char-ho1 -->
+
+            <!-- char-ho2、ho3、ho4は上記のセクションをコピーしてidのみを変更して追加してください -->
+
+
+			            <section id="柚ヶ与 囚" class="content-card">
+                <h2>Yugayo Shu</h2>
+
+                <div class="profile-overview">
+                    <!-- キャラクタースタンディングイメージ -->
+                    <img src="images/Ho1Standing.png" alt="赤の女王" class="main-profile-img">
+
+                    <div class="profile-info-wrapper">
+                        <!-- 引用
+                             quote-mark 色: style="color: ..." 値を変更するだけです -->
+                        <div class="char-quote">
+                            <span class="quote-mark" style="color: rgba(96,213,227,1.00);">"</span>
+                            <p class="quote-text">一言</p>
+							                        </div>
+
+                        <div class="divider-dots">• • •</div>
+
+                        <!-- 基本情報テーブル
+                             行を追加: <div class="info-row">...</div> コピー -->
+                        <div class="info-table">
+                            <div class="info-row">
+                                <span class="info-label">名前</span>
+                                <span class="info-value">柚ヶ与 囚</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">職業</span>
+                                <span class="info-value">マジシャン</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">年齢</span>
+                                <span class="info-value">28
+								</span>
+								                            </div>
+                            <div class="info-row">
+                                <span class="info-label">身長</span>
+                                <span class="info-value">162</span>
+                            </div>
+                        </div>
+
+                        <!-- 探索者シートリンク -->
+                        <a href="hhttps://iachara.com/view/14148416" class="link-btn" target="_blank">柚ヶ与囚 CS</a>
+                    </div>
+                </div>
+
+                <div class="divider-dots">• • •</div>
+
+	                <!-- ================================================
+                     レーダーチャート+キャラクターバーグラフ
+
+                     data-stats: STR、CON、POW、DEX、APP、SIZ、INT、EDU
+                                  0〜100の間の8つの数字をカンマで区切って入力
+                                  頂点にマウスを置くと数値が表示されます。
+                     data-color:チャートカラー(R、G、B)
+                     ================================================ -->
+                <div class="stats-wrapper"
+                     data-stats="10, 14, 10, 16, 14, 11, 12, 15"
+                     data-color="96,213,227">
+
+                    <!-- レーダーチャートSVG - 触れる必要はありません -->
+                    <div class="radar-chart-container">
+                        <svg viewBox="0 0 200 200" class="radar-chart">
+                            <g class="chart-background"></g>
+                            <polygon points="" class="chart-polygon data-area"></polygon>
+                            <g class="chart-dots"></g>
+                            <g class="chart-labels"></g>
+                            <g class="chart-tooltip" style="display:none;">
+                                <rect class="tooltip-bg" rx="3" ry="3"></rect>
+                                <text class="tooltip-text"></text>
+                            </g>
+                        </svg>
+                    </div>
+
+					                    <!-- 性格バーグラフ
+                         --bar-color : バー全体の色(この値のみを変更するとすべてのバーに適用)
+                         width : 0% = 左極端 / 100% = 右極端 -->
+                    <div class="stat-group" style="--bar-color: rgba(96,213,227,0.60);">
+                        <h3>Personality</h3>
+
+                        <div class="stat-item">
+                            <div class="stat-header"><span>内向的</span><span>外向的</span></div>
+                            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:30%;"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-header"><span>感覚</span><span>直感</span></div>
+							<div class="stat-bar-bg"><div class="stat-bar-fill" style="width:50%;"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-header"><span>思考</span><span>感情</span></div>
+                            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:10%;"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-header"><span>判断</span><span>知覚</span></div>
+                            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:50%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /stats-wrapper -->
+
+                <div class="divider-dots">• • •</div>
+               
+				<!-- バックストーリー
+                     分岐点を追加: <details>...</details> ブロックをコピー -->
+                <h2>バックストーリー</h2>
+                <p class="section-intro">入る前の概要テキスト</p>
+
+                <details>
+                    <summary>分岐点 1</summary>
+                    <div class="details-content">内容</div>
+                </details>
+                <details>
+                    <summary>分岐点 2</summary>
+                    <div class="details-content">内容</div>
+                </details>
+
+            </section>            <!-- /char-ho2 -->
+            <!-- ====================================================
+                 [タブ] Backup — ログのバックアップ
+
+                 ココフォリアからダウンロードしたhtmlファイルを開く
+                 [main]タグを含むテキストを下に貼り付けます。
+                 形式: [main] 名前 : 代謝内容
+
+                 章の追加: <details>...</details> ブロックのコピー
+                 ==================================================== -->
+            <section id="Backup" class="content-card">
+                <h2>ログ</h2>
+				
+				                <details>
+                    <summary>シナリオ名</summary>
+                    <div class="details-content">
+                        [main] Ho 1: ここにセリフを入力してください。
+                        [main] Ho 2: ここにセリフを入力してください。
+                        [main] GM：状況の説明を入力してください。
+                    </div>
+                </details>
+
+            </section>
+
+
+			
+            <!-- ====================================================
+                 [タブ] NPC — 関係人物カードグリッド
+
+                 カードを追加: <div class="relation-card">...</div> コピー
+                 data-relation値→バッジ色：
+                   「敵」「味方」「中立」「依頼人」
+                 新しいタイプをJSのcolorMapに追加してください。
+                 ==================================================== -->	
+			            <section id="NPC" class="content-card">
+                <h2>NPC</h2>
+
+                <div class="relation-grid">
+
+                    <div class="relation-card" data-relation="敵">
+                        <!-- 画像：images /フォルダパスに置き換えてください -->
+                        <img src="https://via.placeholder.com/100" class="relation-avatar" alt="敵の例">
+                        <div class="relation-name">敵</div>
+                        <div class="relation-desc">説明</div>
+                    </div>
+
+                    <div class="relation-card" data-relation="依頼人">
+                        <img src="https://via.placeholder.com/100" class="relation-avatar" alt="依頼人">
+                        <div class="relation-name">依頼人</div>
+                        <div class="relation-desc">説明</div>                   
+					</div>
+					
+                    <div class="relation-card" data-relation="中立">
+                        <img src="https://via.placeholder.com/100" class="relation-avatar" alt="中立例">
+                        <div class="relation-name">中立</div>
+                        <div class="relation-desc">説明</div>
+                    </div>
+
+                </div>
+            </section>
+<!-- ====================================================
+　　　　　　　　　　　　ギャラリー
+
+==================================================== -->	
+			            <section id="gallery" class="content-card">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+					<div class="gallery-card">
+                        <img src="tomoneStanding.webp" alt="犬伏ともねの立ち絵">
+                    </div>
+					<div class="gallery-card">
+                        <img src="images/2.jpg" alt="">
+                    </div>
+					<div class="popup" id="popup">
+                        <img id="popup-img" src="" alt="">
+                    </div>
+ 
+
+</div>
+        </main>
+        <!-- /main-content -->
+
+    </div>
+	<!-- /content-row -->
+		
+    <!-- フッター — フレーズを変えるだけです -->
+    <footer class="site-footer">© 2026 Wizarding Vixen. All rights reserved.</footer>
+
+</div>
+<!-- /container -->
+
+
+<!-- ================================================================
+     JavaScript - タブ切り替え/レーダーチャート/ログパーサー/ NPCバッジ/カレンダー/サイドバー
+     特別な理由がなければ、修正する必要はありません。
+     ================================================================ -->
+<script>
+
+    /* ----------------------------------------------------------
+       タブ切り替え
+       openTab('セクションID') — 文字イメージなどボタンなしで呼び出す
+       openTab('セクションID', btn要素) — nav ボタンをクリックしたときのアクティブ表示を含む
+       ---------------------------------------------------------- */
+	    function openTab(tabName, btnElement = null) {
+        document.querySelectorAll('.content-card').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        const target = document.getElementById(tabName);
+        if (target) target.classList.add('active');
+        if (btnElement) btnElement.classList.add('active');
+    }
+
+	
+    /* ----------------------------------------------------------
+       レーダーチャート (8角形 — CoC 7版)
+       data-stats 順序: 筋力、健康、サイズ、敏捷、外見、知性、精神、教育
+       頂点にマウスを置くと、項目名と数値が表示されます。
+       ---------------------------------------------------------- */
+    function drawAllRadarCharts() {
+        const labels = ["STR", "CON", "POW", "DEX", "APP", "SIZ", "INT",  "EDU"];
+        const SIDES  = 8;
+        const STEP   = (Math.PI * 2) / SIDES;
+        const CX = 100, CY = 100, R = 75;
+
+        document.querySelectorAll('.stats-wrapper').forEach(wrapper => {
+            const stats    = (wrapper.dataset.stats || "50,50,50,50,50,50,50,50").split(',').map(Number);
+            const colorRGB = wrapper.dataset.color || "61, 90, 97";
+
+	        const bgEl   = wrapper.querySelector('.chart-background');
+            const polyEl = wrapper.querySelector('.chart-polygon');
+            const dotsEl = wrapper.querySelector('.chart-dots');
+            const lblEl  = wrapper.querySelector('.chart-labels');
+            const tipEl  = wrapper.querySelector('.chart-tooltip');
+            if (!bgEl || !polyEl || !lblEl) return;
+
+            // 背景グリッド
+            let gridHTML = "";
+            for (let lv = 1; lv <= 5; lv++) {
+                let pts = "";
+                const r = (R / 5) * lv;
+                for (let i = 0; i < SIDES; i++) {
+                    pts += `${CX + r * Math.cos(i * STEP - Math.PI/2)},${CY + r * Math.sin(i * STEP - Math.PI/2)} `;
+                }
+				gridHTML += `<polygon points="${pts}" class="${lv === 5 ? 'grid-line-outer' : 'grid-line'}"></polygon>`;
+            }
+
+            // 軸線＆ラベル
+            let axisHTML = "", labelHTML = "";
+            for (let i = 0; i < SIDES; i++) {
+                const angle = i * STEP - Math.PI / 2;
+                const ex = CX + R * Math.cos(angle), ey = CY + R * Math.sin(angle);
+                axisHTML  += `<line x1="${CX}" y1="${CY}" x2="${ex}" y2="${ey}" class="axis-line"></line>`;
+                const lx = CX + (R + 14) * Math.cos(angle), ly = CY + (R + 14) * Math.sin(angle);
+                labelHTML += `<text x="${lx}" y="${ly}" class="chart-label">${labels[i]}</text>`;
+            }
+            bgEl.innerHTML  = gridHTML + axisHTML;
+            lblEl.innerHTML = labelHTML;
+
+            // データポリゴン+頂点 
+			let pts = "", dotsHTML = "";
+            for (let i = 0; i < SIDES; i++) {
+                const r = (stats[i] / 18) * R;
+                const x = CX + r * Math.cos(i * STEP - Math.PI/2);
+                const y = CY + r * Math.sin(i * STEP - Math.PI/2);
+                pts += `${x},${y} `;
+                dotsHTML += `
+                    <circle cx="${x}" cy="${y}" r="3" fill="rgb(${colorRGB})" stroke="white" stroke-width="1"></circle>
+                    <circle cx="${x}" cy="${y}" r="10" fill="transparent" class="chart-dot-hit"
+                        data-label="${labels[i]}" data-value="${stats[i]}" data-x="${x}" data-y="${y}"></circle>`;
+            }
+            polyEl.setAttribute("points", pts);
+            polyEl.style.fill   = `rgba(${colorRGB}, 0.5)`;
+            polyEl.style.stroke = `rgb(${colorRGB})`;
+            if (dotsEl) dotsEl.innerHTML = dotsHTML;
+
+            // ツールチップイベント
+			if (!tipEl) return;
+            const tipBg   = tipEl.querySelector('.tooltip-bg');
+            const tipText = tipEl.querySelector('.tooltip-text');
+
+            wrapper.querySelectorAll('.chart-dot-hit').forEach(hit => {
+                hit.addEventListener('mouseenter', () => {
+                    const lbl = hit.dataset.label, val = hit.dataset.value;
+                    const hx  = parseFloat(hit.dataset.x), hy = parseFloat(hit.dataset.y);
+                    const boxW = (lbl.length + val.length + 1) * 6.5 + 10, boxH = 16;
+                    let tx = hx + 6, ty = hy - boxH - 4;
+                    if (tx + boxW > 195) tx = hx - boxW - 6;
+                    if (ty < 2) ty = hy + 6;
+                    tipText.textContent = `${lbl} ${val}`;
+					tipBg.setAttribute('x', tx);   tipBg.setAttribute('y', ty);
+                    tipBg.setAttribute('width', boxW); tipBg.setAttribute('height', boxH);
+                    tipText.setAttribute('x', tx + boxW / 2);
+                    tipText.setAttribute('y', ty + boxH / 2);
+                    tipEl.style.display = 'block';
+                });
+                hit.addEventListener('mouseleave', () => { tipEl.style.display = 'none'; });
+            });
+        });
+    }
+
+	
+    /* ----------------------------------------------------------
+       ログパーサー — [main] タグ認識（ココフォリア出力形式）
+       形式: [main] 名前 : 代謝内容
+
+       キャラクターカラーを追加：「名前」：「＃カラーコード」形式で追加します。
+       ---------------------------------------------------------- */
+    function parseAllLogs() {
+        // ↓ キャラクターごとの名前の色は、ログ内の名前やスペース（空白）まで完全に一致していないと認識されません。	        
+		const charColors = {
+        "Ho 1"   : "#4d9c29",
+        "Ho 2"   : "#34610a",
+        "Ho 3"   : "#1b3106",
+        "Ho 4"   : "#294d0b",
+        "GM"     : "#555555",
+        "system" : "#494949"
+        };
+        document.querySelectorAll('.details-content').forEach(container => {
+            const raw     = container.innerHTML.replace(/&nbsp;/g, ' ').trim();
+            const pattern = /\[main\]\s*(.*?)\s*:\s*(.*?)(?=\s*\[main\]|$)/g;
+            let html = "", match;
+            while ((match = pattern.exec(raw)) !== null) {
+                const name  = match[1].trim();
+                const content = match[2].trim();
+                html += `<div class="log-item">
+                    <b class="log-name" style="color:${charColors[name] || '#636363'}">${name}</b>
+                    <span class="msg-text">${content}</span>
+                </div>`;
+            } 
+			if (html) container.innerHTML = html;
+        });
+    }
+
+
+    /* ----------------------------------------------------------
+       NPCカード関係バッジの自動生成
+       新しいタイプを追加：colorMapに「タイプ名」：{bg、text}を追加
+       ---------------------------------------------------------- */
+    function buildRelationBadges() {
+        const colorMap = {
+			            "敵"    : { bg: "#7b1111", text: "#ffdada" },
+            "味方"  : { bg: "#1a4d2e", text: "#d4f7e0" },
+            "中立"  : { bg: "#3a3a3a", text: "#cccccc" },
+            "依頼人": { bg: "#0d2d5e", text: "#cce0ff" }
+        };
+        document.querySelectorAll('.relation-card[data-relation]').forEach(card => {
+            const rel   = card.dataset.relation;
+            const style = colorMap[rel];
+            if (!style) return;
+            const badge = document.createElement('span');
+            badge.className     = 'relation-badge';
+            badge.textContent   = rel;
+            badge.style.cssText = `background:${style.bg}; color:${style.text};`;
+            card.prepend(badge);
+			        });
+    }
+
+/* ----------------------------------------------------------
+       ギャラリー
+	   ポップアップ
+       ---------------------------------------------------------- */
+const popup = document.getElementById('popup');
+const popupImg = document.getElementById('popup-img');
+
+document.querySelectorAll('.gallery-card img').forEach(img => {
+    img.addEventListener('click', () => {
+        popup.style.display = 'flex';
+        popupImg.src = img.src;
+    });
+});
+
+popup.addEventListener('click', () => {
+    popup.style.display = 'none';
+});
+	
+	
+	
+    /* ----------------------------------------------------------
+       カレンダー
+       スケジュールを追加：eventsオブジェクトに以下の形式で入力します。
+         "YYYY-MM-DD": ["スケジュール名"、"時間"]
+       ---------------------------------------------------------- */
+    function buildCalendar() {
+        // ↓ 予定をここに追加
+        const events = {
+            "2026-09-10": ["友音誕生日", "00:00"],
+            "2026-05-28": ["例", "20:00"]
+        };
+
+		        const el = document.getElementById('calendar');
+        if (!el) return;
+
+        const DOW = ["日","月","火","水","木","金","土"];
+        let current = new Date();
+
+        function render() {
+            const year     = current.getFullYear();
+            const month    = current.getMonth();
+            const today    = new Date();
+            const firstDay = new Date(year, month, 1).getDay();
+            const lastDate = new Date(year, month + 1, 0).getDate();
+
+            let dayCells = "";
+            for (let i = 0; i < firstDay; i++) {
+                dayCells += `<div class="cal-day empty"></div>`;
+            }
+			            for (let d = 1; d <= lastDate; d++) {
+                const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                const isToday = d === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+                const ev      = events[dateStr];
+                const tooltip = ev ? `<span class="cal-tooltip">${ev[0]}<br>${ev[1]}</span>` : "";
+                dayCells += `<div class="cal-day ${isToday ? 'today' : ''} ${ev ? 'has-event' : ''}">${d}${tooltip}</div>`;
+            }
+			
+			            el.innerHTML = `
+                <div class="cal-header">
+                    <div class="cal-year">${year}</div>
+                    <div class="cal-nav">
+                        <button id="cal-prev">&lt;</button>
+                        <span class="cal-month">${String(month+1).padStart(2,'0')}</span>
+                        <button id="cal-next">&gt;</button>
+                    </div>
+                </div>
+                <div class="cal-grid">
+                    ${DOW.map(d => `<div class="cal-dow">${d}</div>`).join('')}
+                    ${dayCells}
+                </div>`;
+
+            document.getElementById('cal-prev').addEventListener('click', () => { current = new Date(year, month - 1, 1); render(); });
+            document.getElementById('cal-next').addEventListener('click', () => { current = new Date(year, month + 1, 1); render(); });
+        }
+
+        render();
+    }
+	
+	
+	    /* ----------------------------------------------------------
+       モバイルサイドバーの切り替え
+       ---------------------------------------------------------- */
+    function toggleSidebar() {
+        document.querySelector('.sidebar-column').classList.toggle('open');
+        document.querySelector('.sidebar-overlay').classList.toggle('active');
+    }
+
+
+    // ページロード時にすべて実行
+    window.addEventListener('load', () => {
+        drawAllRadarCharts();
+        parseAllLogs();
+        buildRelationBadges();
+        buildCalendar();
+    });
+
+</script>
+</body>
+</html>
